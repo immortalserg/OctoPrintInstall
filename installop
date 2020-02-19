@@ -11,6 +11,8 @@ echo ""
 apt update -y
 apt upgrade -y
 apt install -y python-pip python-dev python-setuptools python-virtualenv git libyaml-dev build-essential virtualenv mc
+apt install -y libtiff5-dev libjpeg8-dev zlib1g-dev libfreetype6-dev liblcms2-dev libwebp-dev libharfbuzz-dev libfribidi-dev tcl8.6-dev tk8.6-dev python-tk
+apt install -y libjpeg62-turbo-dev
 useradd -m -d /home/pi pi -p $pass2
 usermod -a -G sudo pi
 usermod -a -G tty pi
@@ -37,8 +39,12 @@ su pi -c '/home/pi/OctoPrint/bin/pip install https://github.com/Salandora/octopr
 su pi -c '/home/pi/OctoPrint/bin/pip install https://github.com/1r0b1n0/OctoPrint-Tempsgraph/archive/master.zip'
 su pi -c '/home/pi/OctoPrint/bin/pip install https://github.com/Renaud11232/OctoPrint-Resource-Monitor/archive/master.zip'
 su pi -c '/home/pi/OctoPrint/bin/pip install https://github.com/chatrat12/layerdisplay/archive/master.zip'
+su pi -c '/home/pi/OctoPrint/bin/pip install https://github.com/jneilliii/OctoPrint-TerminalCommandsExtended/archive/master.zip'
+su pi -c '/home/pi/OctoPrint/bin/pip install https://github.com/quanticchaos/OctoPrint-Webcamsb/archive/master.zip'
+su pi -c '/home/pi/OctoPrint/bin/pip install https://github.com/FormerLurker/Octolapse/archive/master.zip'
+su pi -c '/home/pi/OctoPrint/bin/pip install https://github.com/fabianonline/OctoPrint-Telegram/archive/stable.zip'
 
-apt install -y motion
+apt install -y motion ffmpeg
 sed -i '/daemon/s/off/on/' /etc/motion/motion.conf
 sed -i '/width/s/320/640/' /etc/motion/motion.conf
 sed -i '/height/s/240/480/' /etc/motion/motion.conf
@@ -46,9 +52,6 @@ sed -i '/framerate/s/2/15/' /etc/motion/motion.conf
 sed -i '/stream_maxrate/s/1/15/' /etc/motion/motion.conf
 sed -i '/stream_localhost/s/on/off/' /etc/motion/motion.conf
 sed -i '/webcontrol_port/s/8080/0/' /etc/motion/motion.conf
-
-
-
 sed -i '/start_motion_daemon/s/no/yes/' /etc/default/motion
 
 
