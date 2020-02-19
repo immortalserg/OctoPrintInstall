@@ -38,3 +38,19 @@ su pi -c '/home/pi/OctoPrint/bin/pip install https://github.com/1r0b1n0/OctoPrin
 su pi -c '/home/pi/OctoPrint/bin/pip install https://github.com/Renaud11232/OctoPrint-Resource-Monitor/archive/master.zip'
 su pi -c '/home/pi/OctoPrint/bin/pip install https://github.com/chatrat12/layerdisplay/archive/master.zip'
 
+apt install -y motion
+sed -i '/daemon/s/off/on/' /etc/motion/motion.conf
+sed -i '/width/s/320/640/' /etc/motion/motion.conf
+sed -i '/height/s/240/480/' /etc/motion/motion.conf
+sed -i '/framerate/s/2/15/' /etc/motion/motion.conf
+sed -i '/stream_maxrate/s/1/15/' /etc/motion/motion.conf
+sed -i '/stream_localhost/s/on/off/' /etc/motion/motion.conf
+sed -i '/webcontrol_port/s/8080/0/' /etc/motion/motion.conf
+
+
+
+sed -i 'start_motion_daemon/s/no/yes/' /etc/default/motion
+
+
+
+
