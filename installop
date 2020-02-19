@@ -21,14 +21,18 @@ su pi -c '/home/pi/OctoPrint/bin/octoprint' &
 
 wget https://raw.githubusercontent.com/immortalserg/OctoPrintInstall/master/octoprint.init && mv octoprint.init /etc/init.d/octoprint
 wget https://raw.githubusercontent.com/immortalserg/OctoPrintInstall/master/octoprint.default && mv octoprint.default /etc/default/octoprint
-wget https://raw.githubusercontent.com/immortalserg/OctoPrintInstall/master/rewrite_wait_to_busy.py && mv rewrite_wait_to_busy.py /home/pi/.octoprint/plugins
+su pi -c 'wget -P /home/pi/.octoprint/plugins/ https://raw.githubusercontent.com/immortalserg/OctoPrintInstall/master/rewrite_wait_to_busy.py'
+su pi -c 'wget -P /home/pi/.octoprint/ https://raw.githubusercontent.com/immortalserg/OctoPrintInstall/master/config.yaml'
+
+
 chmod +x /etc/init.d/octoprint
 update-rc.d octoprint defaults
 sudo hostnamectl set-hostname octoprint.lan
 sudo echo "127.0.0.1 octoprint.lan" >> /etc/hosts
 sudo echo "127.0.0.1 octoprint" >> /etc/hosts
 echo "overlays=analog-codec i2c0 i2c1 spi-spidev uart1 uart2 uart3" | tee -a /boot/armbianEnv.txt
-
+echo "pi ALL=NOPASSWD: /sbin/shutdown" | sudo tee -a /etc/sudoers.d/octoprint-shutdown
+echo "pi ALL=NOPASSWD: /etc/init.d/octoprint" | sudo tee -a /etc/sudoers.d/octoprint-shutdown
 su pi -c '/home/pi/OctoPrint/bin/pip install https://github.com/Salandora/octoprint-customControl/archive/master.zip'
 su pi -c '/home/pi/OctoPrint/bin/pip install https://github.com/1r0b1n0/OctoPrint-Tempsgraph/archive/master.zip'
 
