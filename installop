@@ -21,8 +21,8 @@ su pi -c '/home/pi/OctoPrint/bin/octoprint' &
 
 wget -P /etc/init.d/octoprint https://raw.githubusercontent.com/immortalserg/OctoPrintInstall/master/init/octoprint
 wget -P /etc/default/octoprint https://raw.githubusercontent.com/immortalserg/OctoPrintInstall/master/octoprint
-su pi -c 'wget -r -P /home/pi/.octoprint/plugins/ https://raw.githubusercontent.com/immortalserg/OctoPrintInstall/master/rewrite_wait_to_busy.py'
-su pi -c 'wget -r -P /home/pi/.octoprint/ https://raw.githubusercontent.com/immortalserg/OctoPrintInstall/master/config.yaml'
+su pi -c 'wget -P /home/pi/.octoprint/plugins/ https://raw.githubusercontent.com/immortalserg/OctoPrintInstall/master/rewrite_wait_to_busy.py'
+su pi -c 'wget -P /home/pi/.octoprint/ https://raw.githubusercontent.com/immortalserg/OctoPrintInstall/master/config.yaml'
 
 
 chmod +x /etc/init.d/octoprint
