@@ -12,7 +12,7 @@ apt update -y
 apt upgrade -y
 apt install -y python-pip python-dev python-setuptools python-virtualenv git libyaml-dev build-essential virtualenv mc
 apt install -y libtiff5-dev libjpeg8-dev zlib1g-dev libfreetype6-dev liblcms2-dev libwebp-dev libharfbuzz-dev libfribidi-dev tcl8.6-dev tk8.6-dev python-tk
-apt install -y libjpeg62-turbo-dev
+apt install unzip
 useradd -m -d /home/pi pi -p $pass2
 usermod -a -G sudo pi
 usermod -a -G tty pi
@@ -43,6 +43,9 @@ su pi -c '/home/pi/OctoPrint/bin/pip install https://github.com/jneilliii/OctoPr
 su pi -c '/home/pi/OctoPrint/bin/pip install https://github.com/quanticchaos/OctoPrint-Webcamsb/archive/master.zip'
 su pi -c '/home/pi/OctoPrint/bin/pip install https://github.com/FormerLurker/Octolapse/archive/master.zip'
 su pi -c '/home/pi/OctoPrint/bin/pip install https://github.com/fabianonline/OctoPrint-Telegram/archive/stable.zip'
+
+su pi -c 'wget -P /home/pi/ https://github.com/immortalserg/OctoPrintInstall/raw/master/OctoPrint-i18n-ru_20171017144913.zip'
+su pi -c 'unzip /home/pi/OctoPrint-i18n-ru_20171017144913.zip -d /home/pi/.octoprint/translations'
 
 apt install -y motion ffmpeg
 sed -i '/daemon/s/off/on/' /etc/motion/motion.conf
