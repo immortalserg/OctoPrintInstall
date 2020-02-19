@@ -41,7 +41,6 @@ su pi -c '/home/pi/OctoPrint/bin/pip install https://github.com/Renaud11232/Octo
 su pi -c '/home/pi/OctoPrint/bin/pip install https://github.com/chatrat12/layerdisplay/archive/master.zip'
 su pi -c '/home/pi/OctoPrint/bin/pip install https://github.com/jneilliii/OctoPrint-TerminalCommandsExtended/archive/master.zip'
 su pi -c '/home/pi/OctoPrint/bin/pip install https://github.com/quanticchaos/OctoPrint-Webcamsb/archive/master.zip'
-su pi -c '/home/pi/OctoPrint/bin/pip install https://github.com/FormerLurker/Octolapse/archive/master.zip'
 su pi -c '/home/pi/OctoPrint/bin/pip install https://github.com/fabianonline/OctoPrint-Telegram/archive/stable.zip'
 
 su pi -c 'wget -P /home/pi/ https://github.com/immortalserg/OctoPrintInstall/raw/master/OctoPrint-i18n-ru_20171017144913.zip'
