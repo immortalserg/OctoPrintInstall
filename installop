@@ -35,4 +35,6 @@ echo "pi ALL=NOPASSWD: /sbin/shutdown" | sudo tee -a /etc/sudoers.d/octoprint-sh
 echo "pi ALL=NOPASSWD: /etc/init.d/octoprint" | sudo tee -a /etc/sudoers.d/octoprint-shutdown
 su pi -c '/home/pi/OctoPrint/bin/pip install https://github.com/Salandora/octoprint-customControl/archive/master.zip'
 su pi -c '/home/pi/OctoPrint/bin/pip install https://github.com/1r0b1n0/OctoPrint-Tempsgraph/archive/master.zip'
+su pi -c '/home/pi/OctoPrint/bin/pip install https://github.com/Renaud11232/OctoPrint-Resource-Monitor/archive/master.zip'
+su pi -c '/home/pi/OctoPrint/bin/pip install https://github.com/chatrat12/layerdisplay/archive/master.zip'
 
