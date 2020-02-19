@@ -1,0 +1,364 @@
+accessControl:
+  enabled: false
+api:
+  key: 5E3E773D1D544955962BFAEE560B6556
+appearance:
+  color: blue
+controls:
+- children:
+  - command: 'G0 X%(x)s Y%(y)s Z%(z)s '
+    input:
+    - default: '10'
+      name: X
+      parameter: x
+      slider: false
+    - default: '10'
+      name: Y
+      parameter: y
+      slider: false
+    - default: '10'
+      name: Z
+      parameter: z
+      slider: false
+    name: GO
+  layout: horizontal
+- children:
+  - commands:
+    - M8000 I1
+    - M8001 I1
+    - M8002 I-1
+    - M8003 I-1
+    - M8004 I1
+    - M8005 I1
+    - M8005 X0
+    - M8005 Y0
+    - M8005 Z1
+    - M8006 I120
+    - M8007 I25
+    - M8008 I600
+    - M8009 S0.0125
+    - M8010 S0.0025
+    - M8011 S0.010799
+    - M8012 I200
+    - M8013 I30
+    - M8014 I120
+    - M8015 I8
+    - M8015 S30
+    - M8016 I4
+    - M8016 S4
+    - M8017 I6
+    - M8018 I100
+    - M8019 I50
+    - M8020 S1.5
+    - M8021 S1.75
+    - M8022 I275
+    - M8022 T170
+    - M8023 I100
+    - M8023 T0
+    - M8024 I330
+    - M8025 I330
+    - M8026 I400
+    - M8027 I1
+    - M8027 T1
+    - M8028 S0.00
+    - M8029 C0
+    - M8029 D1
+    - M8029 I0
+    - M8029 P-1
+    - M8029 S0
+    - M8029 T0
+    - M8030 I0
+    - M8030 I50 T-1
+    - M8033 S0
+    - M8034 I1
+    - M8035 I7
+    - M8036 X300 Y300
+    - M8036 X300 Y50
+    - M8036 X60 Y300
+    - M8036 X60 Y50
+    - M8036 X10 Y10
+    - M8036 X300 Y300
+    - M8036 X60 Y50
+    - M8038 X4
+    - M8038 Y4
+    - M8080 I2
+    - M8081 I2
+    - M8083 I1
+    - M8084 Z4
+    - M8085 I6000
+    - M8489 I256
+    - M8489 P0
+    - M8489 T3
+    - M301 P22.2 I1.08 D114
+    - M8520 I0
+    - M8500
+    - ''
+    - ''
+    confirm: null
+    name: X5SA config
+  - commands:
+    - M8029 D1
+    - M8500
+    name: Вкл.датчик нити
+  - commands:
+    - M8029 D0
+    - M8500
+    name: Выкл.датчик нити
+  layout: horizontal
+gcodeViewer: {}
+plugins:
+  announcements:
+    _config_version: 1
+    channels:
+      _blog:
+        read_until: 1576506900
+      _important:
+        read_until: 1521111600
+      _octopi:
+        read_until: 1573722900
+      _plugins:
+        read_until: 1581033600
+      _releases:
+        read_until: 1581427500
+  dashboard:
+    gaugetype: bar
+    showJobControlButtons: true
+    showLayerGraph: true
+    showLayerProgress: true
+    showSystemInfo: true
+    showWebCam: true
+  discovery:
+    upnpUuid: 9f1f6252-e56c-4ef0-afd4-342c231a0a6d
+  errortracking:
+    unique_id: 01e96bc2-1bce-4b23-8c81-f19187d12ed4
+  softwareupdate:
+    _config_version: 6
+    check_providers:
+      DisplayLayerProgress: DisplayLayerProgress
+      customcontrol: customControl
+      dashboard: dashboard
+      tempsgraph: tempsgraph
+      terminalcommandsextended: terminalcommandsextended
+      zbolttheme: zbolttheme
+  terminalcommandsextended:
+    _config_version: 3
+    commands:
+    - command: 'M8029 D1
+
+        M8500'
+      confirmation: false
+      enabled_while_printing: false
+      icon: fas fa-gear
+      input: []
+      label: Вкл. датчик нити
+      message: ''
+      tooltip: ''
+    - command: 'M8029 D0
+
+        M8500'
+      confirmation: false
+      enabled_while_printing: false
+      icon: fas fa-gear
+      input: []
+      label: Выкл. датчик нити
+      message: ''
+      tooltip: ''
+    - command: 'M8000 I1
+
+        M8001 I1
+
+        M8002 I-1
+
+        M8003 I-1
+
+        M8004 I1
+
+        M8005 I1
+
+        M8005 X0
+
+        M8005 Y0
+
+        M8005 Z1
+
+        M8006 I120
+
+        M8007 I25
+
+        M8008 I600
+
+        M8009 S0.0125
+
+        M8010 S0.0025
+
+        M8011 S0.010799
+
+        M8012 I200
+
+        M8013 I30
+
+        M8014 I120
+
+        M8015 I8
+
+        M8015 S30
+
+        M8016 I4
+
+        M8016 S4
+
+        M8017 I6
+
+        M8018 I100
+
+        M8019 I50
+
+        M8020 S1.5
+
+        M8021 S1.75
+
+        M8022 I275
+
+        M8022 T170
+
+        M8023 I100
+
+        M8023 T0
+
+        M8024 I330
+
+        M8025 I330
+
+        M8026 I400
+
+        M8027 I1
+
+        M8027 T1
+
+        M8028 S0.00
+
+        M8029 C0
+
+        M8029 D1
+
+        M8029 I0
+
+        M8029 P-1
+
+        M8029 S0
+
+        M8029 T0
+
+        M8030 I0
+
+        M8030 I50 T-1
+
+        M8033 S0
+
+        M8034 I1
+
+        M8035 I7
+
+        M8036 X300 Y300
+
+        M8036 X300 Y50
+
+        M8036 X60 Y300
+
+        M8036 X60 Y50
+
+        M8036 X10 Y10
+
+        M8036 X300 Y300
+
+        M8036 X60 Y50
+
+        M8038 X4
+
+        M8038 Y4
+
+        M8080 I2
+
+        M8081 I2
+
+        M8083 I1
+
+        M8084 Z4
+
+        M8085 I6000
+
+        M8489 I256
+
+        M8489 P0
+
+        M8489 T3
+
+        M301 P22.2 I1.08 D114
+
+        M8520 I0
+
+        M8500
+
+        '
+      confirmation: false
+      enabled_while_printing: false
+      icon: fas fa-gear
+      input: []
+      label: X5SA конфиг
+      message: ''
+      tooltip: ''
+    - command: 'G0 X%(x)s Y%(y)s Z%(z)s '
+      confirmation: false
+      enabled_while_printing: false
+      icon: fas fa-gear
+      input:
+      - label: X
+        parameter: x
+        value: '10'
+      - label: Y
+        parameter: y
+        value: '10'
+      - label: Z
+        parameter: z
+        value: '10'
+      label: OK
+      message: ''
+      tooltip: ''
+  tracking:
+    enabled: false
+    unique_id: 834985c9-d822-4f47-9e42-30ac1b25db24
+printerProfiles:
+  default: _default
+serial:
+  additionalPorts:
+  - /dev/ttyS3
+  autoconnect: true
+  baudrate: 115200
+  port: /dev/ttyS3
+server:
+  commands:
+    serverRestartCommand: sudo /etc/init.d/octoprint restart
+    systemRestartCommand: sudo shutdown -r now
+    systemShutdownCommand: sudo shutdown -h now
+  firstRun: false
+  onlineCheck:
+    enabled: false
+  pluginBlacklist:
+    enabled: false
+  secretKey: NPY7BtFBfSZa6VPOYW2bH5zy0XBbD1kX
+  seenWizards:
+    corewizard: 3
+    tracking: null
+temperature:
+  profiles:
+  - bed: 100
+    chamber: null
+    extruder: 210
+    name: ABS
+  - bed: 60
+    chamber: null
+    extruder: 180
+    name: PLA
+webcam:
+  stream: http://octoprint.lan:8081/
+  timelapseEnabled: false
