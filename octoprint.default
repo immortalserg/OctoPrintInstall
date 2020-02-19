@@ -1,0 +1,10 @@
+# Configuration for /etc/init.d/octoprint
+OCTOPRINT_USER=pi
+BASEDIR=/home/pi/.octoprint
+CONFIGFILE=/home/pi/.octoprint/config.yaml
+PORT=5000
+DAEMON=/home/pi/OctoPrint/bin/octoprint
+DAEMON_ARGS="--port=$PORT"
+UMASK=022
+NICELEVEL=-2
+START=yes
