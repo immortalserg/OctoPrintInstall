@@ -49,7 +49,7 @@ sed -i '/webcontrol_port/s/8080/0/' /etc/motion/motion.conf
 
 
 
-sed -i 'start_motion_daemon/s/no/yes/' /etc/default/motion
+sed -i '/start_motion_daemon/s/no/yes/' /etc/default/motion
 
 
 
