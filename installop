@@ -23,8 +23,8 @@ su pi -c '/home/pi/OctoPrint/bin/octoprint' &
 
 wget -O /etc/init.d/octoprint https://raw.githubusercontent.com/immortalserg/OctoPrintInstall/master/init/octoprint
 wget -O /etc/default/octoprint https://raw.githubusercontent.com/immortalserg/OctoPrintInstall/master/octoprint
-su pi -c 'wget -O /home/pi/.octoprint/plugins/ https://raw.githubusercontent.com/immortalserg/OctoPrintInstall/master/rewrite_wait_to_busy.py'
-su pi -c 'wget -O /home/pi/.octoprint/ https://raw.githubusercontent.com/immortalserg/OctoPrintInstall/master/config.yaml'
+su pi -c 'wget -O /home/pi/.octoprint/plugins/rewrite_wait_to_busy.py https://raw.githubusercontent.com/immortalserg/OctoPrintInstall/master/rewrite_wait_to_busy.py'
+su pi -c 'wget -O /home/pi/.octoprint/config.yaml https://raw.githubusercontent.com/immortalserg/OctoPrintInstall/master/config.yaml'
 
 
 chmod +x /etc/init.d/octoprint
@@ -48,15 +48,15 @@ su pi -c '/home/pi/OctoPrint/bin/pip install https://github.com/amsbr/OctoPrint-
 su pi -c 'wget -P /home/pi/ https://github.com/immortalserg/OctoPrintInstall/raw/master/OctoPrint-i18n-ru_20171017144913.zip'
 su pi -c 'unzip /home/pi/OctoPrint-i18n-ru_20171017144913.zip -d /home/pi/.octoprint/translations'
 
-apt install -y motion ffmpeg
-sed -i '/daemon/s/off/on/' /etc/motion/motion.conf
-sed -i '/width/s/320/640/' /etc/motion/motion.conf
-sed -i '/height/s/240/480/' /etc/motion/motion.conf
-sed -i '/framerate/s/2/15/' /etc/motion/motion.conf
-sed -i '/stream_maxrate/s/1/15/' /etc/motion/motion.conf
-sed -i '/stream_localhost/s/on/off/' /etc/motion/motion.conf
-sed -i '/webcontrol_port/s/8080/0/' /etc/motion/motion.conf
-sed -i '/start_motion_daemon/s/no/yes/' /etc/default/motion
+#apt install -y motion ffmpeg
+#sed -i '/daemon/s/off/on/' /etc/motion/motion.conf
+#sed -i '/width/s/320/640/' /etc/motion/motion.conf
+#sed -i '/height/s/240/480/' /etc/motion/motion.conf
+#sed -i '/framerate/s/2/15/' /etc/motion/motion.conf
+#sed -i '/stream_maxrate/s/1/15/' /etc/motion/motion.conf
+#sed -i '/stream_localhost/s/on/off/' /etc/motion/motion.conf
+#sed -i '/webcontrol_port/s/8080/0/' /etc/motion/motion.conf
+#sed -i '/start_motion_daemon/s/no/yes/' /etc/default/motion
 
 
 
