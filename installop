@@ -44,6 +44,9 @@ su pi -c '/home/pi/OctoPrint/bin/pip install https://github.com/quanticchaos/Oct
 su pi -c '/home/pi/OctoPrint/bin/pip install https://github.com/fabianonline/OctoPrint-Telegram/archive/stable.zip'
 su pi -c '/home/pi/OctoPrint/bin/pip install https://github.com/amsbr/OctoPrint-Stats/archive/master.zip'
 su pi -c '/home/pi/OctoPrint/bin/pip install https://github.com/jneilliii/OctoPrint-DragonOrder/archive/master.zip'
+su pi -c '/home/pi/OctoPrint/bin/pip install https://github.com/Z-Bolt/OctoPrint-Z-Bolt-Theme/archive/master.zip'
+
+
 
 su pi -c 'wget -P /home/pi/ https://github.com/immortalserg/OctoPrintInstall/raw/master/OctoPrint-i18n-ru_20171017144913.zip'
 su pi -c 'unzip /home/pi/OctoPrint-i18n-ru_20171017144913.zip -d /home/pi/.octoprint/translations'
