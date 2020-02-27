@@ -4,9 +4,25 @@ api:
   key: 5E3E773D1D544955962BFAEE560B6556
 appearance:
   color: blue
+  components:
+    order:
+      sidebar:
+      - plugin_printer_safety_check
+      - connection
+      - state
+      - files
+      - plugin_stats
+      tab:
+      - control
+      - temperature
+      - terminal
+      - gcodeviewer
+      - plugin_stats
+      - plugin_resource_monitor
 controls:
 - children:
-  - command: 'G0 X%(x)s Y%(y)s Z%(z)s '
+  - command: 'G0 X%(x)s Y%(y)s Z%(z)s  F%(f)s '
+    confirm: null
     input:
     - default: '10'
       name: X
@@ -20,8 +36,43 @@ controls:
       name: Z
       parameter: z
       slider: false
+    - default: '3000'
+      name: F
+      parameter: f
+      slider: false
     name: GO
   layout: horizontal
+- children:
+  - children:
+    - command: G92 Z0
+      name: Z=0
+    - commands:
+      - M8084 Z%(z)s
+      - M8500
+      - ''
+      confirm: null
+      input:
+      - default: '1.5'
+        name: H
+        parameter: z
+        slider: false
+      name: OK
+    - commands:
+      - M8029 D%(on)s
+      - M8500
+      input:
+      - default: 0
+        name: Датчик нити
+        parameter: 'on'
+        slider:
+          max: '1'
+          min: '0'
+          step: '1'
+      name: OK
+    - command: M112
+      name: STOP
+    layout: horizontal
+  layout: vertical
 - children:
   - commands:
     - M8000 I1
@@ -50,6 +101,7 @@ controls:
     - M8018 I100
     - M8019 I50
     - M8020 S1.5
+    - M8033 S0
     - M8021 S1.75
     - M8022 I275
     - M8022 T170
@@ -61,24 +113,23 @@ controls:
     - M8027 I1
     - M8027 T1
     - M8028 S0.00
+    - M8029 I0
+    - M8029 T0
+    - M8029 S0
     - M8029 C0
     - M8029 D1
-    - M8029 I0
     - M8029 P-1
-    - M8029 S0
-    - M8029 T0
     - M8030 I0
     - M8030 I50 T-1
-    - M8033 S0
     - M8034 I1
     - M8035 I7
-    - M8036 X300 Y300
-    - M8036 X300 Y50
-    - M8036 X60 Y300
-    - M8036 X60 Y50
     - M8036 X10 Y10
+    - M8036 X60 Y50
+    - M8036 X300 Y300
+    - M8036 X60 Y300
     - M8036 X300 Y300
     - M8036 X60 Y50
+    - M8036 X300 Y50
     - M8038 X4
     - M8038 Y4
     - M8080 I2
@@ -87,23 +138,88 @@ controls:
     - M8084 Z4
     - M8085 I6000
     - M8489 I256
-    - M8489 P0
     - M8489 T3
+    - M8489 P0
     - M301 P22.2 I1.08 D114
     - M8520 I0
     - M8500
-    - ''
-    - ''
-    confirm: null
-    name: X5SA config
+    name: X5SA conf
   - commands:
+    - M8000 I1
+    - M8001 I1
+    - M8002 I-1
+    - M8003 I-1
+    - M8004 I1
+    - M8005 I1
+    - M8005 X0
+    - M8005 Y0
+    - M8005 Z1
+    - M8006 I120
+    - M8007 I25
+    - M8008 I600
+    - M8009 S0.00625
+    - M8010 S0.00125
+    - M8011 S0.010799
+    - M8012 I200
+    - M8013 I30
+    - M8014 I120
+    - M8015 I8
+    - M8015 S30
+    - M8016 I4
+    - M8016 S4
+    - M8017 I6
+    - M8018 I100
+    - M8019 I50
+    - M8020 S1.5
+    - M8033 S0
+    - M8021 S1.75
+    - M8022 I275
+    - M8022 T170
+    - M8023 I100
+    - M8023 T0
+    - M8024 I330
+    - M8025 I330
+    - M8026 I400
+    - M8027 I1
+    - M8027 T1
+    - M8028 S0.00
+    - M8029 I0
+    - M8029 T0
+    - M8029 S0
+    - M8029 C0
     - M8029 D1
+    - M8029 P-1
+    - M8030 I0
+    - M8030 I50 T-1
+    - M8034 I1
+    - M8035 I7
+    - M8036 X10 Y10
+    - M8036 X60 Y50
+    - M8036 X300 Y300
+    - M8036 X60 Y300
+    - M8036 X300 Y300
+    - M8036 X60 Y50
+    - M8036 X300 Y50
+    - M8038 X4
+    - M8038 Y4
+    - M8080 I2
+    - M8081 I2
+    - M8083 I1
+    - M8084 Z4
+    - M8085 I6000
+    - M8489 I256
+    - M8489 T3
+    - M8489 P0
+    - M301 P22.2 I1.08 D114
+    - M8520 I0
     - M8500
-    name: Вкл.датчик нити
-  - commands:
-    - M8029 D0
-    - M8500
-    name: Выкл.датчик нити
+    name: X5SA conf2
+  - command: M114
+    confirm: null
+    default: ''
+    name: Координаты
+    regex: X:([0-9.]+) Y:([0-9.]+) Z:([0-9.]+) E:([0-9.]+)
+    template: 'Position: X={0}, Y={1}, Z={2}, E={3}'
   layout: horizontal
 gcodeViewer: {}
 plugins:
@@ -111,7 +227,7 @@ plugins:
     _config_version: 1
     channels:
       _blog:
-        read_until: 1576506900
+        read_until: 1582800000
       _important:
         read_until: 1521111600
       _octopi:
@@ -119,7 +235,7 @@ plugins:
       _plugins:
         read_until: 1581033600
       _releases:
-        read_until: 1581427500
+        read_until: 1582726200
   dashboard:
     gaugetype: bar
     showJobControlButtons: true
@@ -131,182 +247,32 @@ plugins:
     upnpUuid: 9f1f6252-e56c-4ef0-afd4-342c231a0a6d
   errortracking:
     unique_id: 01e96bc2-1bce-4b23-8c81-f19187d12ed4
+  resource_monitor:
+    _config_version: 1
   softwareupdate:
     _config_version: 6
     check_providers:
       DisplayLayerProgress: DisplayLayerProgress
+      TerminalCommands: TerminalCommands
       customcontrol: customControl
       dashboard: dashboard
+      dragon_order: dragon_order
+      layerdisplay: layerdisplay
+      resource_monitor: resource_monitor
+      stats: stats
+      telegram: telegram
       tempsgraph: tempsgraph
       terminalcommandsextended: terminalcommandsextended
       zbolttheme: zbolttheme
+  telegram:
+    _config_version: 4
+    chats: {}
+    messages:
+      StatusPrinting:
+        combined: true
   terminalcommandsextended:
     _config_version: 3
     commands:
-    - command: 'M8029 D1
-
-        M8500'
-      confirmation: false
-      enabled_while_printing: false
-      icon: fas fa-gear
-      input: []
-      label: Вкл. датчик нити
-      message: ''
-      tooltip: ''
-    - command: 'M8029 D0
-
-        M8500'
-      confirmation: false
-      enabled_while_printing: false
-      icon: fas fa-gear
-      input: []
-      label: Выкл. датчик нити
-      message: ''
-      tooltip: ''
-    - command: 'M8000 I1
-
-        M8001 I1
-
-        M8002 I-1
-
-        M8003 I-1
-
-        M8004 I1
-
-        M8005 I1
-
-        M8005 X0
-
-        M8005 Y0
-
-        M8005 Z1
-
-        M8006 I120
-
-        M8007 I25
-
-        M8008 I600
-
-        M8009 S0.0125
-
-        M8010 S0.0025
-
-        M8011 S0.010799
-
-        M8012 I200
-
-        M8013 I30
-
-        M8014 I120
-
-        M8015 I8
-
-        M8015 S30
-
-        M8016 I4
-
-        M8016 S4
-
-        M8017 I6
-
-        M8018 I100
-
-        M8019 I50
-
-        M8020 S1.5
-
-        M8021 S1.75
-
-        M8022 I275
-
-        M8022 T170
-
-        M8023 I100
-
-        M8023 T0
-
-        M8024 I330
-
-        M8025 I330
-
-        M8026 I400
-
-        M8027 I1
-
-        M8027 T1
-
-        M8028 S0.00
-
-        M8029 C0
-
-        M8029 D1
-
-        M8029 I0
-
-        M8029 P-1
-
-        M8029 S0
-
-        M8029 T0
-
-        M8030 I0
-
-        M8030 I50 T-1
-
-        M8033 S0
-
-        M8034 I1
-
-        M8035 I7
-
-        M8036 X300 Y300
-
-        M8036 X300 Y50
-
-        M8036 X60 Y300
-
-        M8036 X60 Y50
-
-        M8036 X10 Y10
-
-        M8036 X300 Y300
-
-        M8036 X60 Y50
-
-        M8038 X4
-
-        M8038 Y4
-
-        M8080 I2
-
-        M8081 I2
-
-        M8083 I1
-
-        M8084 Z4
-
-        M8085 I6000
-
-        M8489 I256
-
-        M8489 P0
-
-        M8489 T3
-
-        M301 P22.2 I1.08 D114
-
-        M8520 I0
-
-        M8500
-
-        '
-      confirmation: false
-      enabled_while_printing: false
-      icon: fas fa-gear
-      input: []
-      label: X5SA конфиг
-      message: ''
-      tooltip: ''
     - command: 'G0 X%(x)s Y%(y)s Z%(z)s '
       confirmation: false
       enabled_while_printing: false
@@ -314,7 +280,7 @@ plugins:
       input:
       - label: X
         parameter: x
-        value: '10'
+        value: '200'
       - label: Y
         parameter: y
         value: '10'
@@ -324,6 +290,84 @@ plugins:
       label: OK
       message: ''
       tooltip: ''
+    - command: 'M8084 Z%(z)s
+
+        M8500'
+      confirmation: false
+      enabled_while_printing: false
+      icon: fas fa-text-height
+      input:
+      - label: Высота автоуровня
+        parameter: z
+        value: '1.5'
+      label: OK
+      message: ''
+      tooltip: датчик авто уровня
+    - command: 'M8029 D1
+
+        M8500'
+      confirmation: false
+      enabled_while_printing: false
+      icon: far fa-check-circle
+      input: []
+      label: ''
+      message: ''
+      tooltip: включить датчик нити
+    - command: 'M8029 D0
+
+        M8500'
+      confirmation: false
+      enabled_while_printing: false
+      icon: fas fa-check-circle
+      input: []
+      label: ''
+      message: ''
+      tooltip: выключить датчик нити
+    - command: "M8000 I1\nM8001 I1\nM8002 I-1\nM8003 I-1\nM8004 I1\nM8005 I1\nM8005\
+        \ X0\nM8005 Y0\nM8005 Z1\nM8006 I120\nM8007 I25\nM8008 I600\nM8009 S0.0125\n\
+        M8010 S0.0025\nM8011 S0.010799\nM8012 I200\nM8013 I30\nM8014 I120\nM8015 I8\n\
+        M8015 S30\nM8016 I4\nM8016 S4\nM8017 I6\nM8018 I100\nM8019 I50\nM8020 S1.5\n\
+        M8033 S0\nM8021 S1.75\nM8022 I275\nM8022 T170\nM8023 I100\nM8023 T0\nM8024\
+        \ I330\nM8025 I330\nM8026 I400\nM8027 I1\nM8027 T1\nM8028 S0.00\nM8029 I0\n\
+        M8029 T0\nM8029 S0\nM8029 C0\nM8029 D1\nM8029 P-1\nM8030 I0\nM8030 I50 T-1\n\
+        M8034 I1\nM8035 I7\nM8036 X10 Y10\nM8036 X60 Y50\nM8036 X300 Y300\nM8036 X60\
+        \ Y300\nM8036 X300 Y300       \nM8036 X60 Y50\nM8036 X300 Y50       \nM8038\
+        \ X4 \nM8038 Y4 \nM8080 I2\nM8081 I2\nM8083 I1\nM8084 Z4\nM8085 I6000\nM8489\
+        \ I256\nM8489 T3\nM8489 P0\nM301 P22.2 I1.08 D114\nM8520 I0\nM8500"
+      confirmation: false
+      enabled_while_printing: false
+      icon: fas fa-gear
+      input: []
+      label: X5SA конфиг
+      message: ''
+      tooltip: конфигурация
+    - command: "M8000 I1\nM8001 I1\nM8002 I-1\nM8003 I-1\nM8004 I1\nM8005 I1\nM8005\
+        \ X0\nM8005 Y0\nM8005 Z1\nM8006 I120\nM8007 I25\nM8008 I600\nM8009 S0.00625\n\
+        M8010 S0.00125\nM8011 S0.010799\nM8012 I200\nM8013 I30\nM8014 I120\nM8015\
+        \ I8\nM8015 S30\nM8016 I4\nM8016 S4\nM8017 I6\nM8018 I100\nM8019 I50\nM8020\
+        \ S1.5\nM8033 S0\nM8021 S1.75\nM8022 I275\nM8022 T170\nM8023 I100\nM8023 T0\n\
+        M8024 I330\nM8025 I330\nM8026 I400\nM8027 I1\nM8027 T1\nM8028 S0.00\nM8029\
+        \ I0\nM8029 T0\nM8029 S0\nM8029 C0\nM8029 D1\nM8029 P-1\nM8030 I0\nM8030 I50\
+        \ T-1\nM8034 I1\nM8035 I7\nM8036 X10 Y10\nM8036 X60 Y50\nM8036 X300 Y300\n\
+        M8036 X60 Y300\nM8036 X300 Y300       \nM8036 X60 Y50\nM8036 X300 Y50    \
+        \   \nM8038 X4 \nM8038 Y4 \nM8080 I2\nM8081 I2\nM8083 I1\nM8084 Z4\nM8085\
+        \ I6000\nM8489 I256\nM8489 T3\nM8489 P0\nM301 P22.2 I1.08 D114\nM8520 I0\n\
+        M8500"
+      confirmation: false
+      enabled_while_printing: false
+      icon: fas fa-gear
+      input: []
+      label: X5SA конфиг2
+      message: ''
+      tooltip: конфигурация
+    - command: M112
+      confirmation: false
+      enabled_while_printing: false
+      icon: fas fa-ban
+      input: []
+      label: STOP
+      message: ''
+      tooltip: экстренная остановка
   tracking:
     enabled: false
     unique_id: 834985c9-d822-4f47-9e42-30ac1b25db24
@@ -331,10 +375,12 @@ printerProfiles:
   default: _default
 serial:
   additionalPorts:
+  - /dev/ttyS1
+  - /dev/ttyS2
   - /dev/ttyS3
   autoconnect: true
   baudrate: 115200
-  port: /dev/ttyS3
+  port: /dev/ttyS1
 server:
   commands:
     serverRestartCommand: sudo /etc/init.d/octoprint restart
@@ -348,6 +394,7 @@ server:
   secretKey: NPY7BtFBfSZa6VPOYW2bH5zy0XBbD1kX
   seenWizards:
     corewizard: 3
+    telegram: 1
     tracking: null
 temperature:
   profiles:
@@ -359,6 +406,11 @@ temperature:
     chamber: null
     extruder: 180
     name: PLA
+  - bed: 60
+    chamber: 0
+    extruder: 205
+    name: PLA2
 webcam:
-  stream: http://octoprint.lan:8081/
+  stream: ''
   timelapseEnabled: false
+  webcamEnabled: false
